@@ -19,9 +19,21 @@ class Grocery(db.Model):
         return f'<Grocery {self.name}>'
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    if request.method == 'POST':  # если форму заполнили и нажали "отправить"
+        name = request.form['name']  # из поля name формы записываем данные в переменную name
+        new_item = Grocery(name=name)  # создаем новый элемент в БД
+
+        try:  # попробовать 🐋💨🌊
+            db.session.add(new_item)  # добавить новую запись в БД 🐋💨🌊
+            db.session.comit()  # применить изменения 🐋💨🌊
+            return redirect('/')  # в случае успеха вернуть пользователя на главную страницу 🐋💨🌊
+        except:  # в случае возникновения ошибки 🐋💨🌊
+            return 'There was a problem adding new item!'
+    else:
+        groceries = Grocery.query.order_by(Grocery.added).all()
+        return render_template('index.html', groceries=groceries)
 
 
 if __name__ == '__main__':
