@@ -16,9 +16,9 @@
             {% for grocery in groceries %}
                     <!-- каждая строка таблицы - это запись в базе данных -->
                 <tr>
-                    <td>{{ grocery.name }}</td>
+                    <td><a href="/update/{{ grocery.id }}" class="badge bg-info">{{ grocery.name }}</a></td>
                     <td>{{ grocery.added.date() }}</td>
-                    <td><a href="" class="btn btn-danger btn-sm">Delete</a></td>
+                    <td><a href="/delete/{{ grocery.id }}" class="btn btn-danger btn-sm">Delete</a></td>
                 </tr>
             {% endfor %}
             </tbody>
