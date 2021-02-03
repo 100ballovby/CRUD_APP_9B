@@ -4,31 +4,35 @@
     {% if groceries|length < 1 %}
         <p>There is nothing to show!</p>
     {% else %}
-        <table> <!-- table>thead>tr>th*3 -->
+        <table class="table"> <!-- table>thead>tr>th*3 -->
             <thead>
             <tr>
-                <th>Groceries</th>
-                <th>Added</th>
-                <th></th>
+                <th scope="col">Groceries</th>
+                <th scope="col">Added</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody> <!-- tbody>tr>td*3 -->
             {% for grocery in groceries %}
-                <!-- каждая строка таблицы - это запись в базе данных -->
-            <tr>
-                <td>{{ grocery.name }}</td>
-                <td>{{ grocery.added.date() }}</td>
-                <td><a href="" class="btn btn-danger">Delete</a></td>
-            </tr>
+                    <!-- каждая строка таблицы - это запись в базе данных -->
+                <tr>
+                    <td>{{ grocery.name }}</td>
+                    <td>{{ grocery.added.date() }}</td>
+                    <td><a href="" class="btn btn-danger btn-sm">Delete</a></td>
+                </tr>
             {% endfor %}
             </tbody>
         </table>
     {% endif %}
 
     <form action="/" method="POST">
-        <label for="newItem">New Item: </label>
-        <input type="text" name="name" id="newItem">
-        <button type="submit">Add</button>
+        <div class="form-row"><!-- Обертка для формы -->
+            <div class="col-sm-10 my-1"> <!-- форма занимает 10 колонок и имеет внешние отступы -->
+                <label for="newItem">New Item: </label>
+                <input type="text" name="name" id="newItem" class="form-control" placeholder="Enter new item">
+                <button type="submit">Add</button>
+            </div>
+        </div>
     </form>
 
 {% endblock %}
