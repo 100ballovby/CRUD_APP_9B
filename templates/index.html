@@ -25,16 +25,6 @@
         </table>
     {% endif %}
 
-    <form action="/" method="POST">
-        <div class="form-row"><!-- Обертка для формы -->
-            <div class="col-sm-10 my-1"> <!-- форма занимает 10 колонок и имеет внешние отступы -->
-                <label for="newItem" class="sr-only">New Item: </label>
-                <input type="text" name="name" id="newItem" class="form-control" placeholder="Enter new item">
-            </div>
-            <div class="col-sm-2 my-1"> <!-- кнопка занимает 2 колонки -->
-                <button type="submit" class="btn btn-primary btn-block">Add</button>
-            </div>
-        </div>
-    </form>
+    {% include 'snippets/add_form.html' %}
 
 {% endblock %}
