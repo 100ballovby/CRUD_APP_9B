@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block content %}
+    <h1 class="my-4">Oops! Something went wrong!</h1>
+    <hr>
+    <img src="{{ url_for('static', filename='images/404.svg') }}" alt="404 icon" width="120">
+
+    <p>You're trying to access page than not exists!</p>
+    <p>Please, return to the main page and try again!</p>
+    <hr>
+    <a class="btn btn-outline-success" href="{{ url_for('index') }}">Main page</a>
+{% endblock %}
