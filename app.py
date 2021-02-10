@@ -66,5 +66,10 @@ def update(id):
         return render_template('update.html', title=title, grocery=grocery)
 
 
+@app.errorhandler(404)
+def error_404(error):
+    return render_template('error.html', title='Error 404'), 404
+
+
 if __name__ == '__main__':
     app.run(debug=True)
